@@ -19,9 +19,8 @@ public class Main {
             texts[i] = generateText("abc", 3 + random.nextInt(3));
         }
 
-        for(String i : texts){
-            checkNickName(i);
-        }
+        checkNickName(texts);
+
         System.out.println("Красивых слов с длиной 3: " + length3 + " шт");
         System.out.println("Красивых слов с длиной 4: " + length4 + " шт");
         System.out.println("Красивых слов с длиной 5: " + length5 + " шт");
@@ -37,44 +36,59 @@ public class Main {
         return text.toString();
     }
 
-    public static void checkNickName(String nickName) {
+    public static void checkNickName(String[] texts) {
         Runnable runnable = () -> {
-            String revertNick = new StringBuilder(nickName).reverse().toString();
-            if(revertNick.equals(nickName)){
-                switch (nickName.length()) {
-                    case 3: length3.incrementAndGet();
-                    case 4: length4.incrementAndGet();
-                    case 5: length5.incrementAndGet();
+            for (String i : texts) {
+                String revertNick = new StringBuilder(i).reverse().toString();
+                if (revertNick.equals(i)) {
+                    switch (i.length()) {
+                        case 3:
+                            length3.incrementAndGet();
+                        case 4:
+                            length4.incrementAndGet();
+                        case 5:
+                            length5.incrementAndGet();
+                    }
                 }
             }
         };
         new Thread(runnable).start();
 
         Runnable runnable1 = () -> {
-            String[] buffer = nickName.split("");
-            for(String i : buffer){
-                if(!buffer[0].equals(i)){
-                    return;
+            for (String i : texts) {
+                String[] array = i.split("");
+                for (String s : array) {
+                    if (!array[0].equals(s)) {
+                        return;
+                    }
                 }
-            }
-            switch (nickName.length()) {
-                case 3: length3.incrementAndGet();
-                case 4: length4.incrementAndGet();
-                case 5: length5.incrementAndGet();
+                switch (i.length()) {
+                    case 3:
+                        length3.incrementAndGet();
+                    case 4:
+                        length4.incrementAndGet();
+                    case 5:
+                        length5.incrementAndGet();
+                }
             }
         };
         new Thread(runnable1).start();
 
         Runnable runnable2 = () -> {
-            List<String> list = Arrays.asList(nickName.split("")).stream().sorted().collect(Collectors.toList());
-            String result = list.stream()
-                    .map(n -> String.valueOf(n))
-                    .collect(Collectors.joining(""));
-            if(result.equals(nickName)) {
-                switch (nickName.length()) {
-                    case 3: length3.incrementAndGet();
-                    case 4: length4.incrementAndGet();
-                    case 5: length5.incrementAndGet();
+            for (String i : texts) {
+                List<String> list = Arrays.asList(i.split("")).stream().sorted().collect(Collectors.toList());
+                String result = list.stream()
+                        .map(n -> String.valueOf(n))
+                        .collect(Collectors.joining(""));
+                if (result.equals(i)) {
+                    switch (i.length()) {
+                        case 3:
+                            length3.incrementAndGet();
+                        case 4:
+                            length4.incrementAndGet();
+                        case 5:
+                            length5.incrementAndGet();
+                    }
                 }
             }
         };
