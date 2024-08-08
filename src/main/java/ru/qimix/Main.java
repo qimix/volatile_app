@@ -37,7 +37,7 @@ public class Main {
     }
 
     public static void checkNickName(String[] texts) {
-        Runnable runnable = () -> {
+        new Thread(() -> {
             for (String i : texts) {
                 String revertNick = new StringBuilder(i).reverse().toString();
                 if (revertNick.equals(i)) {
@@ -51,10 +51,9 @@ public class Main {
                     }
                 }
             }
-        };
-        new Thread(runnable).start();
+        }).start();
 
-        Runnable runnable1 = () -> {
+        new Thread(() -> {
             for (String i : texts) {
                 String[] array = i.split("");
                 for (String s : array) {
@@ -71,10 +70,9 @@ public class Main {
                         length5.incrementAndGet();
                 }
             }
-        };
-        new Thread(runnable1).start();
+        }).start();
 
-        Runnable runnable2 = () -> {
+        new Thread(() -> {
             for (String i : texts) {
                 List<String> list = Arrays.asList(i.split("")).stream().sorted().collect(Collectors.toList());
                 String result = list.stream()
@@ -91,8 +89,7 @@ public class Main {
                     }
                 }
             }
-        };
-        new Thread(runnable2).start();
+        }).start();
     }
 }
 
