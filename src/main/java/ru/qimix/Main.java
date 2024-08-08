@@ -8,9 +8,9 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
 public class Main {
-    protected static AtomicInteger length3;
-    protected static AtomicInteger length4;
-    protected static AtomicInteger length5;
+    protected static AtomicInteger length3 = new AtomicInteger(0);
+    protected static AtomicInteger length4 = new AtomicInteger(0);
+    protected static AtomicInteger length5 = new AtomicInteger(0);
 
     public static void main(String[] args) {
         Random random = new Random();
@@ -22,6 +22,9 @@ public class Main {
         for(String i : texts){
             checkNickName(i);
         }
+        System.out.println("Красивых слов с длиной 3: " + length3 + " шт");
+        System.out.println("Красивых слов с длиной 4: " + length4 + " шт");
+        System.out.println("Красивых слов с длиной 5: " + length5 + " шт");
 
     }
 
