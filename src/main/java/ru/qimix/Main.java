@@ -1,7 +1,6 @@
 package ru.qimix;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -48,6 +47,7 @@ public class Main {
                             length4.incrementAndGet();
                         case 5:
                             length5.incrementAndGet();
+                        default:
                     }
                 }
             }
@@ -68,6 +68,7 @@ public class Main {
                         length4.incrementAndGet();
                     case 5:
                         length5.incrementAndGet();
+                    default:
                 }
             }
         }).start();
@@ -86,6 +87,7 @@ public class Main {
                             length4.incrementAndGet();
                         case 5:
                             length5.incrementAndGet();
+                        default:
                     }
                 }
             }
